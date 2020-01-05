@@ -3,16 +3,16 @@ import akka.http.scaladsl.model.HttpRequest
 import models.{Combinable, HttpError}
 import org.mockito.Mockito
 import org.mockito.Mockito.when
-import org.scalatest.mockito.MockitoSugar._
+import org.scalatest.mockito.MockitoSugar.mock
 import org.scalatest.{AsyncWordSpec, BeforeAndAfterEach, DoNotDiscover, Matchers}
 import play.api.libs.json.{Json, Reads}
 
 import scala.concurrent.Future
 
 @DoNotDiscover
-class ParallelHttpClientTest extends AsyncWordSpec with Matchers with BeforeAndAfterEach {
+class ParallelHttpClientTest2 extends AsyncWordSpec with Matchers with BeforeAndAfterEach {
 
-  import ParallelHttpClientTest._
+  import ParallelHttpClientTest2._
 
   "parallelRequests" should {
     "return combined result of all requests" in {
@@ -46,8 +46,7 @@ class ParallelHttpClientTest extends AsyncWordSpec with Matchers with BeforeAndA
   override def beforeEach(): Unit = Mockito.reset(httpClient)
 }
 
-
-object ParallelHttpClientTest {
+object ParallelHttpClientTest2 {
   private val httpClient: HttpClient = mock[HttpClient]
   private val parallelHttpClient: ParallelHttpClient = new ParallelHttpClient(httpClient)
   private val request1: HttpRequest = HttpRequest(GET, "req1")

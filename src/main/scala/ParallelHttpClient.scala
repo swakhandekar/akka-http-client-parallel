@@ -12,7 +12,6 @@ class ParallelHttpClient(simpleHttpClient: HttpClient) {
     requests
       .par
       .map(simpleHttpClient.simpleHttpRequest[T])
-      .map((res: Future[Either[HttpError, T]]) => res)
       .reduce((a, b) => a.zipWith(b)(combineEithers))
   }
 

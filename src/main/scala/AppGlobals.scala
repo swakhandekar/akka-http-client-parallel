@@ -9,4 +9,8 @@ object AppGlobals {
   implicit val executionContext: ExecutionContext = system.dispatcher
   implicit val materializer: ActorMaterializer = ActorMaterializer()(system)
   val httpExt: HttpExt = Http(system)
+
+  def shutDown(): Unit ={
+    system.terminate()
+  }
 }
